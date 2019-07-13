@@ -1,6 +1,6 @@
 package edu.learn.springboot.Greetings;
 
-import edu.learn.springboot.language.Language;
+import edu.learn.springboot.language.LanguageModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,7 +10,7 @@ import java.util.List;
 public class GreetingController {
 
 @Autowired
-GreetingService greetingService;
+GreetingServiceImpl greetingServiceImpl;
 
 
     /**
@@ -18,8 +18,8 @@ GreetingService greetingService;
      * @return
      */
     @RequestMapping("/greetings")
-    public List<Greeting> getAllGreetings(){
-        return greetingService.getAllGreetings();
+    public List<GreetingModel> getAllGreetings(){
+        return greetingServiceImpl.getAllGreetings();
     }
 
     /**
@@ -29,28 +29,28 @@ GreetingService greetingService;
      */
 
     @RequestMapping("/greetings/{id}")
-    public Greeting getGreeting(@PathVariable String id){
-        return greetingService.getGreeting(id);
+    public GreetingModel getGreeting(@PathVariable String id){
+        return greetingServiceImpl.getGreeting(id);
     }
 
     /**
-     * Add new greeting
-     * @param greeting
+     * Add new greetingModel
+     * @param greetingModel
      */
 
     @RequestMapping(method = RequestMethod.POST,value="/greetings")
-    public void addGreeting(@RequestBody Greeting greeting){
-        greetingService.addGreeting(greeting);
+    public void addGreeting(@RequestBody GreetingModel greetingModel){
+        greetingServiceImpl.addGreeting(greetingModel);
     }
 
     /**
-     * Update the Greeting if not present add it
-     * @param greeting
+     * Update the GreetingModel if not present add it
+     * @param greetingModel
      * @param id
      */
     @RequestMapping(method = RequestMethod.PUT,value="/greetings/{id}")
-    public void updateGreeting(@RequestBody Greeting greeting, @PathVariable String id){
-          greetingService.updateGreeting(greeting,id);
+    public void updateGreeting(@RequestBody GreetingModel greetingModel, @PathVariable String id){
+          greetingServiceImpl.updateGreeting(greetingModel,id);
     }
 
     /**
@@ -60,7 +60,7 @@ GreetingService greetingService;
 
     @RequestMapping(method = RequestMethod.DELETE,value="/greetings/{id}")
     public void deleteGreeting(@PathVariable String id){
-        greetingService.deleteGreetingByLanguage(id);
+        greetingServiceImpl.deleteGreetingByLanguage(id);
     }
 
     /**
@@ -70,8 +70,8 @@ GreetingService greetingService;
      */
 
     @RequestMapping("/languages/{langId}/greetings")
-    public List<Greeting> getAllGreetingsByLanguage(@PathVariable String langId){
-        return greetingService.getAllGreetingsByLanguage(langId);
+    public List<GreetingModel> getAllGreetingsByLanguage(@PathVariable String langId){
+        return greetingServiceImpl.getAllGreetingsByLanguage(langId);
     }
 
     /**
@@ -81,8 +81,8 @@ GreetingService greetingService;
      * @return
      */
     @RequestMapping("/languages/{langId}/greetings/{id}")
-    public Greeting getGreetingByLanguage(@PathVariable String langId, @PathVariable String id){
-        return greetingService.getGreetingByLanguage(id);
+    public GreetingModel getGreetingByLanguage(@PathVariable String langId, @PathVariable String id){
+        return greetingServiceImpl.getGreetingByLanguage(id);
     }
 
     /**
@@ -91,23 +91,28 @@ GreetingService greetingService;
      * @param langId
      */
 
+    /**
+     *
+     * @param greetingModel
+     * @param langId
+     */
     @RequestMapping(method = RequestMethod.POST,value="/languages/{langId}/greetings")
-    public void addGreetingByLanguage(@RequestBody Greeting greeting, @PathVariable String langId){
-        greeting.setLanguage(new Language(langId));
-        greetingService.addGreetingByLanguage(greeting);
+    public void addGreetingByLanguage(@RequestBody GreetingModel greetingModel, @PathVariable String langId){
+        greetingModel.setLanguageModel(new LanguageModel(langId));
+        greetingServiceImpl.addGreetingByLanguage(greetingModel);
     }
 
     /**
-     * Update the Greeting from Language if not present add it
-     * @param greeting
+     * Update the GreetingModel from LanguageModel if not present add it
+     * @param greetingModel
      * @param langId
      * @param id
      */
 
     @RequestMapping(method = RequestMethod.PUT,value="/languages/{langId}/greetings/{id}")
-    public void updateGreetingByLanguage(@RequestBody Greeting greeting,@PathVariable String langId, @PathVariable String id){
-        greeting.setLanguage(new Language(langId));
-        greetingService.updateGreetingByLanguage(greeting,id);
+    public void updateGreetingByLanguage(@RequestBody GreetingModel greetingModel, @PathVariable String langId, @PathVariable String id){
+        greetingModel.setLanguageModel(new LanguageModel(langId));
+        greetingServiceImpl.updateGreetingByLanguage(greetingModel,id);
     }
 
     /**
@@ -117,6 +122,6 @@ GreetingService greetingService;
 
     @RequestMapping(method = RequestMethod.DELETE,value="/languages/{langId}/greetings/{id}")
     public void deleteGreetingByLanguage(@PathVariable String id){
-        greetingService.deleteGreetingByLanguage(id);
+        greetingServiceImpl.deleteGreetingByLanguage(id);
     }
 }

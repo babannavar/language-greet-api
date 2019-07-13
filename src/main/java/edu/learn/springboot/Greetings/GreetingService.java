@@ -1,61 +1,28 @@
 package edu.learn.springboot.Greetings;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 import java.util.List;
 
-@Service
-public class GreetingService {
+public interface GreetingService {
 
-    @Autowired
-    private GreetingRepository greetingRepository;
+    public List<GreetingModel> getAllGreetings();
 
+    public GreetingModel getGreeting(String id);
 
-    public List<Greeting> getAllGreetings() {
-        List<Greeting> languages = new ArrayList<Greeting>();
-        greetingRepository.findAll().forEach(languages::add);
-        return languages;
-    }
+    public void addGreeting(GreetingModel greetingModel);
 
-    public Greeting getGreeting(String id) {
-        return greetingRepository.findById(id).get();
-    }
+    public void updateGreeting(GreetingModel greetingModel, String id);
 
-    public void addGreeting(Greeting greeting) {
-        greetingRepository.save(greeting);
-    }
+    public void deleteGreeting(String id);
 
-    public void updateGreeting(Greeting greeting, String id) {
-        greetingRepository.save(greeting);
-    }
+    public List<GreetingModel> getAllGreetingsByLanguage(String id);
 
-    public void deleteGreeting(String id) {
-        greetingRepository.deleteById(id);
-    }
+    public GreetingModel getGreetingByLanguage(String id);
 
-    public List<Greeting> getAllGreetingsByLanguage(String id) {
-        List<Greeting> greetings = new ArrayList<Greeting>();
-        greetingRepository.findByLanguageLangId(id).forEach(greetings::add);
-        return greetings;
-    }
+    public void addGreetingByLanguage(GreetingModel greetingModel);
 
-    public Greeting getGreetingByLanguage(String id) {
-        return greetingRepository.findById(id).get();
-    }
+    public void updateGreetingByLanguage(GreetingModel greetingModel, String id);
 
-    public void addGreetingByLanguage(Greeting greeting) {
-        greetingRepository.save(greeting);
-    }
-
-    public void updateGreetingByLanguage(Greeting greeting, String id) {
-        greetingRepository.save(greeting);
-    }
-
-    public void deleteGreetingByLanguage(String id) {
-       greetingRepository.deleteById(id);
-    }
+    public void deleteGreetingByLanguage(String id);
 
 
 }

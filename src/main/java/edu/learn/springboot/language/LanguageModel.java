@@ -1,33 +1,40 @@
 package edu.learn.springboot.language;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-public class Language {
+@Table (name = "language")
+public class LanguageModel {
 
     @Id
+    @Column(name = "l_Id")
     private String langId;
-    private String language;
+
+    @Column(name = "language_name")
+    private String languageName;
+
+    @Column(name = "description")
     private String description;
 
-    public Language() {
+    public LanguageModel() {
     }
 
-    public Language(String langId) {
+    public LanguageModel(String langId) {
         this.langId = langId;
     }
 
     /**
      * Parameter Constructor
      * @param langId
-     * @param language
+     * @param languageName
      * @param description
      */
-
-    public Language(String langId, String language, String description) {
+    public LanguageModel(String langId, String languageName, String description) {
         this.langId = langId;
-        this.language = language;
+        this.languageName = languageName;
         this.description = description;
     }
 
@@ -39,12 +46,12 @@ public class Language {
         this.langId = langId;
     }
 
-    public String getLanguage() {
-        return language;
+    public String getLanguageName() {
+        return languageName;
     }
 
-    public void setLanguage(String language) {
-        this.language = language;
+    public void setLanguageName(String languageName) {
+        this.languageName = languageName;
     }
 
     public String getDescription() {

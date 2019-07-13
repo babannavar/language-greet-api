@@ -9,15 +9,15 @@ import java.util.List;
 public class LanguageController {
 
 @Autowired
-LanguageService languageService;
+LanguageServiceImpl languageServiceImpl;
 
     /**
      * Retrieve all languages
      * @return
      */
     @RequestMapping("/languages")
-    public List<Language> getAllLanguages(){
-        return languageService.getAllLanguages();
+    public List<LanguageModel> getAllLanguages(){
+        return languageServiceImpl.getAllLanguages();
     }
 
     /**
@@ -26,27 +26,28 @@ LanguageService languageService;
      * @return
      */
     @RequestMapping("/languages/{id}")
-    public Language getLanguage(@PathVariable String id){
-        return languageService.getLanguage(id);
+    public LanguageModel getLanguage(@PathVariable String id){
+        return languageServiceImpl.getLanguage(id);
     }
 
     /**
-     * Add new language
-     * @param language
+     * Add new languageModel
+     * @param languageModel
      */
     @RequestMapping(method = RequestMethod.POST,value="/languages")
-    public void addLanguage(@RequestBody Language language){
-        languageService.addLanguage(language);
+    public void addLanguage(@RequestBody LanguageModel languageModel){
+        System.out.println("---->"+ languageModel.getLanguageName());
+        languageServiceImpl.addLanguage(languageModel);
     }
 
     /**
-     * Update the language if not present add it
-     * @param language
+     * Update the languageModel if not present add it
+     * @param languageModel
      * @param id
      */
     @RequestMapping(method = RequestMethod.PUT,value="/languages/{id}")
-    public void addLanguage(@RequestBody Language language,@PathVariable String id){
-        languageService.updateLanguage(language,id);
+    public void addLanguage(@RequestBody LanguageModel languageModel, @PathVariable String id){
+        languageServiceImpl.updateLanguage(languageModel,id);
     }
 
     /**
@@ -55,6 +56,6 @@ LanguageService languageService;
      */
     @RequestMapping(method = RequestMethod.DELETE,value="/languages/{id}")
     public void deleteLanguage(@PathVariable String id){
-        languageService.deleteLanguage(id);
+        languageServiceImpl.deleteLanguage(id);
     }
 }
