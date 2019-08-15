@@ -1,4 +1,4 @@
-package edu.learn.springboot.Greetings;
+package edu.learn.springboot.Greeting;
 
 import java.util.List;
 

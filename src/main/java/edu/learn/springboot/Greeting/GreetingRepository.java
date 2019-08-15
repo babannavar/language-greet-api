@@ -1,4 +1,4 @@
-package edu.learn.springboot.Greetings;
+package edu.learn.springboot.Greeting;
 
 
 import org.springframework.data.repository.CrudRepository;
@@ -13,5 +13,5 @@ public interface GreetingRepository extends CrudRepository<GreetingModel,String>
      * @param id
      * @return
      */
-    public List<GreetingModel> findByLanguageLangId(String id);
+    public List<GreetingModel> findByLanguageModelLangId(String id);
 }

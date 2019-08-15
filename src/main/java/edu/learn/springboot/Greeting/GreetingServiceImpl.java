@@ -1,4 +1,4 @@
-package edu.learn.springboot.Greetings;
+package edu.learn.springboot.Greeting;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,7 +42,7 @@ public class GreetingServiceImpl  implements GreetingService{
     @Override
     public List<GreetingModel> getAllGreetingsByLanguage(String id) {
         List<GreetingModel> greetingModels = new ArrayList<GreetingModel>();
-        greetingRepository.findByLanguageLangId(id).forEach(greetingModels::add);
+        greetingRepository.findByLanguageModelLangId(id).forEach(greetingModels::add);
         return greetingModels;
     }
 
