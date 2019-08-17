@@ -1,4 +1,3 @@
-
 FROM alpine/git as clone
 WORKDIR /app
 RUN git clone https://github.com/babannavar/language-greet-api.git
@@ -13,7 +12,7 @@ FROM openjdk:8-jre-alpine
 ARG PROJECT=language-greet-api
 WORKDIR /app/${PROJECT}
 COPY --from=build /app/${PROJECT}/target/${PROJECT}.jar /app/${PROJECT}
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app/${PROJECT}/${PROJECT}.jar"]
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app/language-greet-api/language-greet-api.jar"]
 
 # Start with a base image containing Java runtime
 #FROM java:8-jdk-alpine
